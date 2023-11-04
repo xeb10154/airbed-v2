@@ -1,0 +1,9 @@
+django
+gunicorn
+psycopg2
+djangorestframework
+django-cors-headers
+django-extensions
+datetimerange
+whitenoise
+requests
