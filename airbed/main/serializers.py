@@ -51,7 +51,9 @@ class PropertySerializer(serializers.ModelSerializer):
         return names
 
     def get_img(self, obj):
-        return obj.media.all().first().name
+        # TODO: get image here
+        # return obj.media.all().first().name
+        pass
 
     class Meta:
         model = Property

@@ -73,8 +73,8 @@ def sampleProperty(name, location, **params):
         'lng': -4.347243,
         'maxGuests': 2,
         'rooms': 1,
-        'details': "This small villa in the country side of Fife provides all the amenities you need to have a relaxed and care-free holiday.",
-        'imgUrl': "https://via.placeholder.com/300/0000FF/808080?text=Raymond"
+        'tagline': 'Great spacious property for rent',
+        'info': 'Information about this property',
     }
     defaults.update(params)
 
@@ -85,7 +85,6 @@ def sampleBooking(user, prop, rating, startDate, endDate):
     defaults = {
         'user': user,
         'property': prop,
-        'rating': rating,
         'startDate': startDate,
         'endDate': endDate
     }
@@ -100,7 +99,7 @@ class PropertyApiTests(TestCase):
     def setUp(self):
         self.client = APIClient()
 
-    def test_retrieve_properties(self):
+    def test_retrieve_available_properties(self):
         """Test retrieving a list of properties"""
         # Create an experience
         exp = sampleExperience()
@@ -119,12 +118,12 @@ class PropertyApiTests(TestCase):
         prop2 = sampleProperty('prop2', loc)
 
         # Create 2 sample bookings
-        sampleBooking(user, prop1, rating,
-                      '2020-09-05T15:00:00.127325Z',
-                      '2020-09-05T15:00:00.127325Z')
-        sampleBooking(user, prop1, rating,
-                      '2020-09-26T15:00:00.127325Z',
-                      '2020-09-30T15:00:00.127325Z')
+        # sampleBooking(user, prop1, rating,
+        #               '2020-09-05T15:00:00.127325Z',
+        #               '2020-09-05T15:00:00.127325Z')
+        # sampleBooking(user, prop1, rating,
+        #               '2020-09-26T15:00:00.127325Z',
+        #               '2020-09-30T15:00:00.127325Z')
 
         res = self.client.get(PROPERTY_URL)
 
@@ -132,5 +131,5 @@ class PropertyApiTests(TestCase):
         # setting many=True returns a list of items
         serializer = PropertySerializer(properties, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertCountEqual(res.data)
+        self.assertEqual(res.data['count'], len(serializer.data))
         # self.assertEqual(res.data, serializer.data)

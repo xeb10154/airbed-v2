@@ -7,3 +7,4 @@ django-extensions
 datetimerange
 whitenoise
 requests
+ipdb

@@ -19,3 +19,6 @@ RUN adduser -D raymond
 RUN chown -R raymond:raymond /vol/
 RUN chmod -R 755 /vol/web
 USER raymond
+
+EXPOSE 8000
+CMD [ "python", "manage.py", "runserver", "8000" ]
