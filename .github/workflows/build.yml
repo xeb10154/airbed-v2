@@ -54,5 +54,5 @@ jobs:
       run: python manage.py test
     - name: Coverage Report
       run: |
-        coverage run manage.py test
+        coverage run --omit='*/migrations/*.py' manage.py test
         coverage report
