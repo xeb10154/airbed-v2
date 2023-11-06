@@ -1,4 +1,4 @@
-name: Test
+name: Build and test
 
 on:
   workflow_dispatch:
@@ -39,6 +39,7 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: 3.11
+        
     - name: Install dependencies
       working-directory: ./  # requirements.txt located in root
       run: |
@@ -46,12 +47,16 @@ jobs:
         pip install -r requirements.txt
         pip install coverage
         pip install flake8
+
     - name: Linting with flake8
       run: flake8
+
     - name: Run migrations
       run: python manage.py migrate
+
     - name: Run Django test suite
       run: python manage.py test
+
     - name: Coverage Report
       run: |
         coverage run --omit='*/migrations/*.py' manage.py test
