@@ -11,19 +11,6 @@ on:
     branches: 
       - staging
 
-jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install flake8
-        run: |
-          pip install flake8
-      - name: Linting with flake8
-        run: |
-          flake8 
-          pwd
-          echo $PWD
-
       
   test:
     runs-on: ubuntu-latest
@@ -50,6 +37,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install flake8
+    - name: Linting with flake8
+      run: flake8 ./airbed/
     - name: Run migrations
       run: python ./airbed/manage.py migrate
     - name: Run Django test suite
