@@ -101,7 +101,7 @@ class PropertyApiTests(TestCase):
         self.client = APIClient()
 
     def test_retrieve_available_properties(self):
-        """Test retrieving a list of properties - Test retrieving a list of propertiessss"""
+        """Test retrieving a list of properties"""
         # Create an experience
         exp = sampleExperience()
 
@@ -109,7 +109,7 @@ class PropertyApiTests(TestCase):
         sampleRating()
 
         # Create a user
-        test = sampleUser()
+        sampleUser()
 
         # Create a sample location
         loc = sampleLocation(exp)
