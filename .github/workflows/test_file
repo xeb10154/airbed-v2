@@ -22,11 +22,3 @@ jobs:
           pip install -r requirements.txt
       - name: Run Django test suite
         run: python manage.py test  # May need to specify exact path depending on the os.path
-
-  docker:
-    needs: test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
