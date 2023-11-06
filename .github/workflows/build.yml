@@ -15,10 +15,10 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      name: Linting with flake8
-      run: |
-        pip install flake8
-        flake8 ./airbed
+      - name: Linting with flake8
+        run: |
+          pip install flake8
+          flake8 ./airbed
       
 
   test:
