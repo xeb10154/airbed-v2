@@ -16,6 +16,7 @@ from main.serializers import (UserSerializer,
                               GallerySerializer)
 
 
+# Comment to test branch protection ruleset
 class SetPagination(PageNumberPagination):
     page_size = 5
     page_size_query_param = 'page_size'
