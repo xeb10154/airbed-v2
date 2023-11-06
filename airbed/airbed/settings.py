@@ -147,4 +147,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
 
 # Google APIs
-GEOCODING_API_KEY = 'AIzaSyAyblU4n8bUhiaXRBbbMB41zQbhksM7CSc'
+GEOCODING_API_KEY = ''
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
