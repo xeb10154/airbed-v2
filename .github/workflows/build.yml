@@ -1,4 +1,4 @@
-name: Build
+name: Test
 
 on:
   workflow_dispatch:
@@ -12,7 +12,16 @@ on:
       - staging
 
 jobs:
-  build:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      name: Linting with flake8
+      run: |
+        pip install flake8
+        flake8 ./airbed
+      
+
+  test:
     runs-on: ubuntu-latest
 
     services:
@@ -41,8 +50,3 @@ jobs:
       run: python ./airbed/manage.py migrate
     - name: Run Django test suite
       run: python ./airbed/manage.py test
-    - name: Linting with flake8
-      run: |
-        pip install flake8
-        flake8
-      
