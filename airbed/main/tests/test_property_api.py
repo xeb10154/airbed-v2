@@ -5,7 +5,8 @@ from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APIClient
 
-from main.models import *
+from main.models import (Experience, Rating, User, Location, Property,
+                         Booking)
 from main.serializers import PropertySerializer
 
 PROPERTY_URL = reverse('main:property-list')
@@ -105,17 +106,17 @@ class PropertyApiTests(TestCase):
         exp = sampleExperience()
 
         # Create a rating
-        rating = sampleRating()
+        sampleRating()
 
         # Create a user
-        user = sampleUser()
+        sampleUser()
 
         # Create a sample location
         loc = sampleLocation(exp)
 
         # Create 2 sample properties
-        prop1 = sampleProperty('prop1', loc)
-        prop2 = sampleProperty('prop2', loc)
+        sampleProperty('prop1', loc)
+        sampleProperty('prop2', loc)
 
         # Create 2 sample bookings
         # sampleBooking(user, prop1, rating,

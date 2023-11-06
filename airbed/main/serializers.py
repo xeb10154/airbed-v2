@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from main.models import *
-import json
+from main.models import (User, Booking, Review, Gallery, Property,
+                         Experience, Location)
 
 
 class UserSerializer(serializers.ModelSerializer):

@@ -1,5 +1,3 @@
-import datetime
-
 from django.db import models
 
 
@@ -42,7 +40,10 @@ class Property(models.Model):
     tagline = models.CharField(max_length=500)
     info = models.CharField(max_length=1000, null=True)
     img = models.ForeignKey(
-        'Gallery', related_name='thumbnail', on_delete=models.CASCADE, null=True)
+        'Gallery',
+        related_name='thumbnail',
+        on_delete=models.CASCADE,
+        null=True)
 
     def __str__(self):
         return self.name
@@ -67,11 +68,20 @@ class Review(models.Model):
 
 class Booking(models.Model):
     user = models.ForeignKey(
-        'User', related_name='bookings', on_delete=models.SET_NULL, null=True)
+        'User',
+        related_name='bookings',
+        on_delete=models.SET_NULL,
+        null=True)
     property = models.ForeignKey(
-        'Property', related_name='bookings', on_delete=models.SET_NULL, null=True)
+        'Property',
+        related_name='bookings',
+        on_delete=models.SET_NULL,
+        null=True)
     review = models.ForeignKey(
-        'Review', related_name='bookings', on_delete=models.CASCADE, null=True)
+        'Review',
+        related_name='bookings',
+        on_delete=models.CASCADE,
+        null=True)
     startDate = models.DateTimeField()
     endDate = models.DateTimeField()
     cancel = models.BooleanField(default=False)

@@ -1,18 +1,12 @@
-from django.shortcuts import get_object_or_404
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse, JsonResponse
-from django.conf import settings
 from django.db.models import Q
-
-import requests
-import json
 
 from datetimerange import DateTimeRange
 from datetime import datetime
-from rest_framework import generics, viewsets, status, mixins
+from rest_framework import viewsets, status, mixins
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
-from main.models import *
+from main.models import (User, Review, Property, Gallery,
+                         Booking, Experience, Location)
 from main.serializers import (UserSerializer,
                               PropertySerializer,
                               BookingSerializer,
@@ -50,7 +44,8 @@ class ReviewViewSet(viewsets.GenericViewSet,
 
         if not propId:
             return Response(
-                data={"error": "Key 'property' not found in request query params"},
+                data={"error": "Key 'property' not found in request \
+                      query params"},
                 status=status.HTTP_400_BAD_REQUEST)
 
         queryset = queryset.filter(Q(bookings__property=propId))
@@ -100,14 +95,16 @@ class PropertyViewSet(viewsets.ModelViewSet):
 
     # def perform_create(self, serializer):
 
-    #     # The POST request will come with JSON payload of number, street, city and postcode
+    #     # The POST request will come with JSON payload of number, street,
+    #     # city and postcode
     #     formData = self.request.data
     #     number = formData.get('number')
     #     street = formData.get('street')
     #     city = formData.get('city')
 
     #     res = requests.get(
-    #         f'https://maps.googleapis.com/maps/api/geocode/json?address={number} {street},+{city}&key={settings.GEOCODING_API_KEY}')
+    #         f'https://maps.googleapis.com/maps/api/geocode/json?address=
+    #           {number} {street},+{city}&key={settings.GEOCODING_API_KEY}')
 
     #     resData = res.json()['results'][0]
 
@@ -189,7 +186,8 @@ class BookingViewSet(viewsets.ModelViewSet):
         return Response(status=status.HTTP_403_FORBIDDEN)
 
 
-class GetAllBookingsForPropertyID(viewsets.GenericViewSet, mixins.ListModelMixin):
+class GetAllBookingsForPropertyID(viewsets.GenericViewSet,
+                                  mixins.ListModelMixin):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
 
@@ -200,7 +198,8 @@ class GetAllBookingsForPropertyID(viewsets.GenericViewSet, mixins.ListModelMixin
 
         if not propId:
             return Response(
-                data={"error": "Key 'property' not found in request query params"},
+                data={"error": "Key 'property' not found in request \
+                      query params"},
                 status=status.HTTP_400_BAD_REQUEST)
 
         queryset = queryset.filter(Q(property__id=propId) & Q(cancel=False))
