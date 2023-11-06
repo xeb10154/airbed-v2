@@ -109,7 +109,7 @@ class PropertyApiTests(TestCase):
         sampleRating()
 
         # Create a user
-        sampleUser()
+        test = sampleUser()
 
         # Create a sample location
         loc = sampleLocation(exp)
