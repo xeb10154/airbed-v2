@@ -15,6 +15,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./airbed
+
     services:
       postgres:
         image: postgres:latest
@@ -39,8 +43,8 @@ jobs:
         pip install -r requirements.txt
         pip install flake8
     - name: Linting with flake8
-      run: flake8 ./airbed/
+      run: flake8
     - name: Run migrations
-      run: python ./airbed/manage.py migrate
+      run: python manage.py migrate
     - name: Run Django test suite
-      run: python ./airbed/manage.py test
+      run: python manage.py test
