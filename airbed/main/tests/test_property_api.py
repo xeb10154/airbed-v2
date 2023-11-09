@@ -134,5 +134,3 @@ class PropertyApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data['count'], len(serializer.data))
         # self.assertEqual(res.data, serializer.data)
-
-        # Testing comment
