@@ -132,5 +132,5 @@ class PropertyApiTests(TestCase):
         # setting many=True returns a list of items
         serializer = PropertySerializer(properties, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(1000, len(serializer.data))
+        self.assertEqual(res.data['count'], len(serializer.data))
         # self.assertEqual(res.data, serializer.data)
